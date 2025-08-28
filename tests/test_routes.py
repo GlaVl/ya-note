@@ -6,7 +6,6 @@ from django.urls import reverse
 
 from notes.models import Note
 
-
 User = get_user_model()
 
 
@@ -62,8 +61,8 @@ class TestRoutes(TestCase):
             self.client.force_login(user)
             # Для каждой пары "пользователь - ожидаемый ответ"
             # перебираем имена тестируемых страниц:
-            for name in ('notes:edit', 'notes:delete', 'notes:detail',): 
-                with self.subTest(user=user, name=name):        
+            for name in ('notes:edit', 'notes:delete', 'notes:detail',):
+                with self.subTest(user=user, name=name):
                     url = reverse(name, args=(self.note.slug,))
                     response = self.client.get(url)
                     self.assertEqual(response.status_code, status)
@@ -76,7 +75,6 @@ class TestRoutes(TestCase):
         """
 
         login_url = reverse('users:login')
-        
         for name, arg in [
             ('notes:list', None),
             ('notes:success', None),
